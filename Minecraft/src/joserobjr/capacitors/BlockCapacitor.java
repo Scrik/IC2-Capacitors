@@ -115,4 +115,16 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 			ForgeDirection side) {
 		return false;
 	}
+
+	@Override
+	public TileEntity createNewTileEntity(World var1, int meta) {
+		switch (meta) {
+	    case 0:
+	      return new TileEntityCapacitorUL();
+	    case 1:
+	      return new TileEntityCapacitorULBT();
+	    }
+	    return null;
+	}
+	
 }
