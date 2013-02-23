@@ -32,7 +32,7 @@ public class ItemCapacitor extends ItemBlock {
             return "blockCapacitorULBT";
 
             default:
-                return "itemCapacitor";
+                return "blockCapacitorUL";
         }
     }
 
