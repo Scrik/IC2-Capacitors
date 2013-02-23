@@ -25,11 +25,6 @@
 			<type>2</type>
 			<locationURI>MCP_LOC/lib</locationURI>
 		</link>
-		<link>
-			<name>src</name>
-			<type>2</type>
-			<locationURI>MCP_LOC/src/minecraft</locationURI>
-		</link>
 	</linkedResources>
 	<filteredResources>
 		<filter>
