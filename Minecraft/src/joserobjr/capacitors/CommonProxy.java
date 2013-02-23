@@ -29,7 +29,7 @@ public class CommonProxy {
 	}
 
 	public void loadConfig(Configuration config) {
-		Property capacitorBlockID = config.getBlock("accelerator", this.capacitorBlockID);
+		Property capacitorBlockID = config.getBlock("capacitors", this.capacitorBlockID);
 		capacitorBlockID.comment = "BlockID for capacitors. Default is "+this.capacitorBlockID;
 		this.capacitorBlockID = capacitorBlockID.getInt(this.capacitorBlockID);
 		
