@@ -22,8 +22,6 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 		super(id, Material.iron);
 		setHardness(1.5F);
         this.setStepSound(soundMetalFootstep);
-        CommonProxy.ulCapacitor = new ItemStack(this, 1, 0);
-        CommonProxy.ulBtCapacitor = new ItemStack(this, 1, 1);
         setBlockName("Capacitor");
 	}
 	
@@ -42,7 +40,10 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
                 
             case 1:
                 return new TileEntityCapacitorULBT();
-
+            
+            case 2:
+            	return new TileEntityTransformerUL();
+            
             default:
                 return null;
         }

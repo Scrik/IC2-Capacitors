@@ -42,7 +42,11 @@ public class CommonProxy {
 	public void initBlocks() {
 		capacitorBlock = new BlockCapacitor(capacitorBlockID);
 		GameRegistry.registerBlock(capacitorBlock, ItemCapacitor.class, capacitorBlock.getBlockName());
-		
+
+        ulCapacitor = new ItemStack(capacitorBlock, 1, 0);
+        ulBtCapacitor = new ItemStack(capacitorBlock, 1, 1);
+        ulTransformer = new ItemStack(capacitorBlock, 1, 2);
+        
 		GameRegistry.registerTileEntity(TileEntityCapacitorUL.class, "UL-Capacitor");
 		GameRegistry.registerTileEntity(TileEntityCapacitorULBT.class, "ULBT-Capacitor");
 		GameRegistry.registerTileEntity(TileEntityTransformerUL.class, "UL-Transformer");
