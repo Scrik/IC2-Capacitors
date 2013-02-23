@@ -2,8 +2,10 @@ package joserobjr.capacitors;
 
 import ic2.api.Direction;
 import ic2.api.energy.EnergyNet;
+import ic2.api.energy.event.EnergyTileSourceEvent;
 import ic2.core.block.wiring.TileEntityTransformer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 
 public abstract class TileEntityCapacitor extends TileEntityTransformer {
 
@@ -37,7 +39,9 @@ public abstract class TileEntityCapacitor extends TileEntityTransformer {
         	parts = lowOutput / highOutput;
         	for (int var1 = 0; var1 < 4 && this.energy >= this.highOutput; ++var1)
             {
-                this.energy -= this.highOutput - EnergyNet.getForWorld(this.worldObj).emitEnergyFrom(this, this.highOutput);
+        		EnergyTileSourceEvent event = new EnergyTileSourceEvent(this, this.highOutput);
+        		MinecraftForge.EVENT_BUS.post(event);
+                this.energy -= this.highOutput - event.amount;
             }
         }
         else
@@ -45,7 +49,9 @@ public abstract class TileEntityCapacitor extends TileEntityTransformer {
         	parts = highOutput / lowOutput;
             for (int var1 = 0; var1 < parts && this.energy >= this.lowOutput; ++var1)
             {
-                this.energy -= this.lowOutput - EnergyNet.getForWorld(this.worldObj).emitEnergyFrom(this, this.lowOutput);
+            	EnergyTileSourceEvent event = new EnergyTileSourceEvent(this, this.lowOutput);
+        		MinecraftForge.EVENT_BUS.post(event);
+                this.energy -= this.lowOutput - event.amount;
             }
         }
     }
