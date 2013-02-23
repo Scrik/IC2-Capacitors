@@ -2,6 +2,7 @@ package joserobjr.capacitors;
 
 import ic2.api.Direction;
 import ic2.api.energy.EnergyNet;
+import ic2.core.block.wiring.TileEntityTransformer;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileEntityCapacitor extends TileEntityTransformer {
