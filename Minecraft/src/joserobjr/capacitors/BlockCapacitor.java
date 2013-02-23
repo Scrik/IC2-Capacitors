@@ -2,6 +2,8 @@ package joserobjr.capacitors;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.EnumRarity;
@@ -10,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import ic2.core.IC2;
 import ic2.core.block.BlockMultiID;
 import ic2.core.block.IRareBlock;
 import ic2.core.block.TileEntityBlock;
@@ -50,7 +51,7 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 	@Override
 	public void onBlockPlacedBy(World world, int var2, int var3, int var4, EntityLiving entityliving)
     {
-        if (!IC2.platform.isSimulating()) return;
+        if (!FMLCommonHandler.instance().getEffectiveSide().isClient()) return;
         
         TileEntityBlock var6 = (TileEntityBlock)world.getBlockTileEntity(var2, var3, var4);
 
