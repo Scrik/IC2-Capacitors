@@ -30,7 +30,10 @@ public class ItemCapacitor extends ItemBlock {
             
         case 1:
             return "blockCapacitorULBT";
-
+        
+        case 2:
+        	return "blockTransformerUL";
+            
             default:
                 return "blockCapacitorUL";
         }

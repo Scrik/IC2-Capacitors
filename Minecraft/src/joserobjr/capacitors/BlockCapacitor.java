@@ -124,6 +124,8 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 	      return new TileEntityCapacitorUL();
 	    case 1:
 	      return new TileEntityCapacitorULBT();
+	    case 2:
+	    	return new TileEntityTransformerUL();
 	    }
 	    return null;
 	}
