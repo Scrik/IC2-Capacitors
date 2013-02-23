@@ -19,6 +19,7 @@ public class CommonProxy {
 	public void init(Configuration config) {
 		loadConfig(config);
 		initBlocks();
+		initLanguage();
 		initRecipes();
 	}
 	
