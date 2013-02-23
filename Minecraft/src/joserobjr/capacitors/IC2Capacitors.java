@@ -22,6 +22,8 @@ public class IC2Capacitors extends DummyModContainer {
 	@SidedProxy(clientSide = "joserobjr.capacitors.ClientProxy", serverSide = "joserobjr.capacitors.CommonProxy")
 	public static CommonProxy proxy;
 	
+	public IC2Capacitors(){}
+	
 	public IC2Capacitors(ModMetadata metadata) {
 		super(metadata);
 		metadata.version = "%conf:VERSION%";
