@@ -51,7 +51,7 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 	@Override
 	public void onBlockPlacedBy(World world, int var2, int var3, int var4, EntityLiving entityliving)
     {
-        if (!FMLCommonHandler.instance().getEffectiveSide().isClient()) return;
+        //if (!FMLCommonHandler.instance().getEffectiveSide().isClient()) return;
         
         TileEntityBlock var6 = (TileEntityBlock)world.getBlockTileEntity(var2, var3, var4);
 
