@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<project name="IC2-Capacitors.zip">
+	<property name="mcp" />
+	<property name="workspace" />
+	
+	<target name="clean">
+	    <delete dir="${mcp}/src/minecraft" />
+		<delete dir="${workspace}/build" />
+		<delete dir="${workspace}/dist" />
+		<delete dir="${workspace}/patch" />
+	</target>
+	
+</project>
