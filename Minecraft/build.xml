@@ -9,6 +9,7 @@
 		<delete dir="${workspace}/build" />
 		<delete dir="${workspace}/dist" />
 		<delete dir="${workspace}/patch" />
+		
 	</target>
 	
 </project>
