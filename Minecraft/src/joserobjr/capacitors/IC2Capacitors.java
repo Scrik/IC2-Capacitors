@@ -10,7 +10,7 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid="IC2Capacitors", version="%conf:VERSION%", dependencies="required-after:IC2")
+@Mod(modid="IC2Capacitors", version="@VERSION@", dependencies="required-after:IC2")
 @NetworkMod(clientSideRequired=true)
 public class IC2Capacitors extends DummyModContainer {
 	@Instance("IC2Capacitors")
