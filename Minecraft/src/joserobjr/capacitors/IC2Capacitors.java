@@ -25,7 +25,7 @@ public class IC2Capacitors extends DummyModContainer {
 
 	public IC2Capacitors(ModMetadata metadata) {
 		super(metadata);
-		metadata.version = "%conf:VERSION%";
+		metadata.version = "@VERSION@";
 		metadata.authorList.add("jose.rob.jr");
 	}
 
