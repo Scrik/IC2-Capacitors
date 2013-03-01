@@ -1,15 +1,106 @@
 <?xml version="1.0"?>
 
-<project name="IC2-Capacitors.zip">
-	<property name="mcp" />
-	<property name="workspace" />
+<project name="IC2-Capacitors.zip" default="rename-zip">
+	<property name="mcp" value="../../../" />
+	<property name="workspace" value="../" />
+	<property name="version" value="snapshot" />
+
+	<condition property="isWindows">
+		<os family="windows" />
+	</condition>
+	
+	<target name="clean-mcp">
+		<echo message="--&gt; Limpando o código antigo..." />
+		<delete dir="${mcp}/src/minecraft" />
+	</target>
+	
+	<target name="copy-forge" depends="clean-mcp">
+		<echo message="--&gt; Copiando o código do Forge" />
+		<mkdir dir="${mcp}/src/minecraft" />
+		<copy todir="${mcp}/src/minecraft">
+			<fileset dir="${mcp}/src/minecraft_src" includes="**" />
+		</copy>
+	</target>
+	
+	<target name="copy-ic2" depends="copy-forge">
+        <echo message="--&gt; Copiando o código do IC2 API" />
+        <mkdir dir="${mcp}/src/minecraft" />
+        <copy todir="${mcp}/src/minecraft">
+            <fileset dir="${mcp}/src/ic2_src" includes="**" />
+        </copy>
+    </target>
+
+	<target name="copy-src" depends="copy-ic2">
+        <echo message="--&gt; Copiando o código modificado" />
+        <mkdir dir="${mcp}/src/minecraft" />
+        <copy todir="${mcp}/src/minecraft">
+            <fileset dir="${workspace}/Minecraft/src" includes="**" />
+        	<filterset>
+        		<filter token="VERSION" value="${version}" />
+        	</filterset>
+        </copy>
+    </target>
+	
 	
 	<target name="clean">
-	    <delete dir="${mcp}/src/minecraft" />
+		<echo message="--&gt; Limpando ambiente antigo" />
 		<delete dir="${workspace}/build" />
 		<delete dir="${workspace}/dist" />
 		<delete dir="${workspace}/patch" />
-		
 	</target>
 	
+	<target name="recompile-sh" unless="isWindows">
+		<echo message="--&gt; Recompilando por SH" />
+		<exec executable="recompile.sh" dir="${mcp}" />
+	</target>
+	
+	<target name="recompile-bat" if="isWindows">
+		<echo message="--&gt; Recompilando por BAT" />
+		<exec executable="cmd" dir="${mcp}">
+			<arg value="/c" />
+			<arg value="recompile.bat"/>
+		</exec>
+	</target>
+	
+	<target name="recompile" depends="clean,recompile-sh,recompile-bat" />
+	
+	<target name="reobfuscate-sh" unless="isWindows">
+		<echo message="--&gt; Reofuscando por SH" />
+        <exec executable="reobfuscate.sh" dir="${mcp}" />
+    </target>
+    
+    <target name="reobfuscate-bat" if="isWindows">
+    	<echo message="--&gt; Reofuscando por BAT" />
+        <exec executable="cmd" dir="${mcp}">
+            <arg value="/c" />
+            <arg value="reobfuscate.bat"/>
+        </exec>
+    </target>
+    
+    <target name="reobfuscate" depends="recompile,reobfuscate-sh,reobfuscate-bat" />
+    
+    <target name="copy-compiled-code" depends="reobfuscate">
+    	<echo message="--&gt; Copiando código compilado" />
+    	<mkdir dir="${workspace}/build/joserobjr/capacitors" />
+    	<mkdir dir="${workspace}/dist" />
+    	
+    	<copy todir="${workspace}/build/joserobjr/capacitors">
+    		<fileset dir="${mcp}/reobf/minecraft/joserobjr/capacitors" includes="**" />
+    		<fileset dir="${workspace}/Minecraft/src/joserobjr/capacitors" excludes="**/*.java" />
+    	</copy>
+	</target>
+	
+	<target name="create-zip" depends="copy-compiled-code">
+		<echo message="--&gt; Criando ZIP" />
+		<zip destfile="${workspace}/dist/ic2-capacitors.zip"
+    		  basedir="${workspace}/build"
+    		  />
+	</target>
+	
+	<target name="rename-zip" depends="create-zip">
+		<echo message="--&gt; Renomeando ZIP" />
+		<move file="${workspace}/dist/ic2-capacitors.zip"
+			tofile="${workspace}/dist/ic2-capacitors-${version}.zip" />
+	</target>
+
 </project>

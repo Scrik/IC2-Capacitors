@@ -7,13 +7,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemCapacitor extends ItemBlock {
-
 	public ItemCapacitor(int par1) {
 		super(par1);
 		this.setMaxDamage(0);
         this.setHasSubtypes(true);
 	}
-	
+
 	public int getMetadata(int var1)
     {
         return var1;
@@ -27,13 +26,13 @@ public class ItemCapacitor extends ItemBlock {
         {
         case 0:
             return "blockCapacitorUL";
-            
+
         case 1:
             return "blockCapacitorULBT";
-        
+
         case 2:
         	return "blockTransformerUL";
-            
+
             default:
                 return "blockCapacitorUL";
         }
@@ -43,7 +42,7 @@ public class ItemCapacitor extends ItemBlock {
     public String getItemName() {
     	return "itemCapacitor0";
     }
-    
+
 	 /**
      * Return an item rarity from EnumRarity
      */
@@ -63,5 +62,4 @@ public class ItemCapacitor extends ItemBlock {
     {
         return 0;
     }
-	
 }

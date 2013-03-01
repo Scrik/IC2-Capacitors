@@ -17,43 +17,42 @@ import ic2.core.block.IRareBlock;
 import ic2.core.block.TileEntityBlock;
 
 public class BlockCapacitor extends BlockMultiID implements IRareBlock {
-
 	public BlockCapacitor(int id) {
 		super(id, Material.iron);
 		setHardness(1.5F);
         this.setStepSound(soundMetalFootstep);
         setBlockName("Capacitor");
 	}
-	
+
 	@Override
 	public String getTextureFile()
     {
         return "/joserobjr/capacitors/block_capacitor.png";
     }
-	
+
 	@Override
 	public TileEntity getBlockEntity(int var1) {
 		switch (var1)
         {
             case 0:
                 return new TileEntityCapacitorUL();
-                
+
             case 1:
                 return new TileEntityCapacitorULBT();
-            
+
             case 2:
             	return new TileEntityTransformerUL();
-            
+
             default:
                 return null;
         }
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World world, int var2, int var3, int var4, EntityLiving entityliving)
     {
         //if (!FMLCommonHandler.instance().getEffectiveSide().isClient()) return;
-        
+
         TileEntityBlock var6 = (TileEntityBlock)world.getBlockTileEntity(var2, var3, var4);
 
         if (entityliving == null)
@@ -95,23 +94,23 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
             }
         }
     }
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack var1)
     {
         return var1.getItemDamage() != 2 && var1.getItemDamage() != 5 ? EnumRarity.common : EnumRarity.uncommon;
     }
-	
+
 	@Override
 	public int damageDropped(int par1) {
 		return par1;
 	}
-	
+
 	@Override
 	public boolean isBlockNormalCube(World world, int x, int y, int z) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z,
 			ForgeDirection side) {
@@ -130,5 +129,4 @@ public class BlockCapacitor extends BlockMultiID implements IRareBlock {
 	    }
 	    return null;
 	}
-	
 }

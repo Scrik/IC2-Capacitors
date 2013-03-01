@@ -8,30 +8,29 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
 public abstract class TileEntityCapacitor extends TileEntityTransformer {
-
 	public TileEntityCapacitor(int low, int high, int storage) {
 		super(low, high, storage);
 	}
-	
+
 	public TileEntityCapacitor(int energy, int storage) {
 		this(energy, energy, storage);
 	}
-	
+
 	public boolean acceptsEnergyFrom(TileEntity var1, Direction var2)
     {
         return !this.redstone ? !this.facingMatchesDirection(var2) : this.facingMatchesDirection(var2);
     }
-	
+
 	public boolean emitsEnergyTo(TileEntity var1, Direction var2)
     {
         return !this.redstone ? this.facingMatchesDirection(var2) : !this.facingMatchesDirection(var2);
     }
-	
+
 	public void updateEntity()
     {
         super.updateEntity();
         this.updateRedstone();
-        
+
         int parts;
 
         if (this.redstone)
@@ -55,5 +54,4 @@ public abstract class TileEntityCapacitor extends TileEntityTransformer {
             }
         }
     }
-
 }
