@@ -51,7 +51,7 @@
 	
 	<target name="recompile-sh" unless="isWindows">
 		<echo message="--&gt; Recompilando por SH" />
-		<exec executable="recompile.sh" dir="${mcp}" />
+		<exec executable="./recompile.sh" dir="${mcp}" />
 	</target>
 	
 	<target name="recompile-bat" if="isWindows">
@@ -66,7 +66,7 @@
 	
 	<target name="reobfuscate-sh" unless="isWindows">
 		<echo message="--&gt; Reofuscando por SH" />
-        <exec executable="reobfuscate.sh" dir="${mcp}" />
+        <exec executable="./reobfuscate.sh" dir="${mcp}" />
     </target>
     
     <target name="reobfuscate-bat" if="isWindows">
